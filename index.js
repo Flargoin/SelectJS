@@ -38,6 +38,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     
             if(!target.closest('.custom-select')) {
                 select.classList.remove('js-active');
+                menu.style.maxHeight = null;
             }
          })
     })
