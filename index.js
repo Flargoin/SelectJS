@@ -1,32 +1,48 @@
 window.addEventListener('DOMContentLoaded', (e) => {
-    const select = document.querySelector(".custom-select");
-    const selectTrigger = select.querySelector('.custom-select__trigger');
-    let menu = select.querySelector('.custom-select__menu');
-    let currValue = select.querySelector('.custom-select__trigger-value');
-    let options = select.querySelectorAll('.custom-select__item-value');
+    const selects = document.querySelectorAll(".custom-select");
 
 
-    select.addEventListener('click', (e) => {
-        e.preventDefault();
-        let target = e.currentTarget;
-        
-        target.classList.toggle('js-active');
 
-        if(target.classList.contains('js-active')) {
-            menu.style.maxHeight = menu.scrollHeight + 'px';
-        } else {
-            menu.style.maxHeight = null;
-        }
+    selects.forEach(select => {
+        select.classList.remove('js-active');
+        let menu = select.querySelector('.custom-select__menu');
+        let currValue = select.querySelector('.custom-select__trigger-value');
+        let options = select.querySelectorAll('.custom-select__item-value');
+
+        select.addEventListener('click', (e) => {
+            
+            let currTarget = e.currentTarget;
+    
+            if(currTarget.closest('.custom-select')) {
+                currTarget.classList.toggle('js-active');
+    
+                if(currTarget.classList.contains('js-active')) {
+                    menu.style.maxHeight = menu.scrollHeight + 'px';
+                } else {
+                    menu.style.maxHeight = null;
+                }
+            }
+        })
+
+        options.forEach(option => {
+            option.addEventListener('click', (e) => {
+             console.log(e.target);
+             currValue.textContent = e.target.value;
+    
+             select.classList.toggle('js-active');
+            })
+         })
+    
+         window.addEventListener('click', (e) => {
+            let target = e.target;
+    
+            if(!target.closest('.custom-select')) {
+                select.classList.remove('js-active');
+            }
+         })
     })
 
-    options.forEach(option => {
-        option.addEventListener('click', (e) => {
-         console.log(e.target);
-         currValue.textContent = option.value;
 
 
-         menu.style.maxHeight = null;
-        })
-     })
 
 })
