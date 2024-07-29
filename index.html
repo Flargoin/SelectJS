@@ -9,7 +9,7 @@
 <body>
     <form action="" class="form">
         <div class="form-group">
-            <div class="form-label">Это селект</div>
+            <div class="form-label">Количество билетов</div>
             <div class="custom-select">
                 <button 
                     class="custom-select__trigger"
@@ -31,42 +31,42 @@
                 >
                     <li class="custom-select__item" role="option">
                         <label class="custom-select__item-name">
-                            <input type="radio" name="custom-select" class="custom-select__item-value" value="">
+                            <input type="radio" name="count-tickets" class="custom-select__item-value" value="">
                             Не выбрано
                         </label>
                     </li>
 
                     <li class="custom-select__item" role="option">
                         <label class="custom-select__item-name">
-                            <input type="radio" name="custom-select" class="custom-select__item-value" value="1">
+                            <input type="radio" name="count-tickets" class="custom-select__item-value" value="1">
                             1
                         </label>
                     </li>
         
                     <li class="custom-select__item" role="option">
                         <label class="custom-select__item-name">
-                            <input type="radio" name="custom-select" class="custom-select__item-value" value="2">
+                            <input type="radio" name="count-tickets" class="custom-select__item-value" value="2">
                             2
                         </label>
                     </li>
         
                     <li class="custom-select__item" role="option">
                         <label class="custom-select__item-name">
-                            <input type="radio" name="custom-select" class="custom-select__item-value" value="3">
+                            <input type="radio" name="count-tickets" class="custom-select__item-value" value="3">
                             3
                         </label>
                     </li>
         
                     <li class="custom-select__item" role="option">
                         <label class="custom-select__item-name">
-                            <input type="radio" name="custom-select" class="custom-select__item-value" value="4">
+                            <input type="radio" name="count-tickets" class="custom-select__item-value" value="4">
                             4
                         </label>
                     </li>
         
                     <li class="custom-select__item" role="option">
                         <label class="custom-select__item-name">
-                            <input type="radio" name="custom-select" class="custom-select__item-value" value="5">
+                            <input type="radio" name="count-tickets" class="custom-select__item-value" value="5">
                             5
                         </label>
                     </li>
@@ -75,8 +75,54 @@
         </div>
 
         <div class="form-group">
-            <label for="" class="form-label">Это инпут</label>
-            <input type="text" name="user-name" class="form-input" required>
+            <div class="form-label">Кто едет</div>
+            <div class="custom-select">
+                <button 
+                    class="custom-select__trigger"
+                    role="combobox"
+                    aria-label="select button"
+                    aria-haspopup="listbox"
+                    aria-expanded="false"
+                    aria-controls="select-dropdown"
+                >
+                    <span class="custom-select__trigger-value">Не выбрано</span>
+                    <span class="arrow">
+                        <span></span>
+                    </span>
+                </button>
+        
+                <ul 
+                    class="custom-select__menu"
+                    role="listbox"
+                >
+                    <li class="custom-select__item" role="option">
+                        <label class="custom-select__item-name">
+                            <input type="radio" name="user-who" class="custom-select__item-value" value="">
+                            Не выбрано
+                        </label>
+                    </li>
+
+                    <li class="custom-select__item" role="option">
+                        <label class="custom-select__item-name">
+                            <input type="radio" name="user-who" class="custom-select__item-value" value="Дети">
+                            Дети
+                        </label>
+                    </li>
+        
+                    <li class="custom-select__item" role="option">
+                        <label class="custom-select__item-name">
+                            <input type="radio" name="user-who" class="custom-select__item-value" value="Взрослые">
+                            Взрослые
+                        </label>
+                    </li>
+    
+                </ul>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="" class="form-label">Какой бюджет?</label>
+            <input type="text" name="user-budget" class="form-input" required>
         </div>
     
         <button>Отправить</button>
