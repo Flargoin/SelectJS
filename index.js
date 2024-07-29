@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', (e) => {
     const selects = document.querySelectorAll(".custom-select");
-
+    const form = document.querySelector('.form');
 
 
     selects.forEach(select => {
@@ -45,5 +45,12 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
 
 
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let formData = new FormData(form);
 
+        const json = JSON.stringify(Object.fromEntries(formData.entries()));
+
+        console.log(json);
+    })
 })
