@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
         select.classList.remove('js-active');
         let menu = select.querySelector('.custom-select__menu');
         let currValue = select.querySelector('.custom-select__trigger-value');
-        let options = select.querySelectorAll('.custom-select__item-value');
+        let options = select.querySelectorAll('.custom-select__item-name');
 
         select.addEventListener('click', (e) => {
             
@@ -26,10 +26,16 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
         options.forEach(option => {
             option.addEventListener('click', (e) => {
+             /* e.stopPropagation(); */
              console.log(e.target);
-             currValue.textContent = e.target.value;
+
+             if(e.target.classList.contains('custom-select__item-name')) {
+                currValue.textContent = e.target.textContent;
+                select.classList.remove('js-active');
+             }
+             
     
-             select.classList.toggle('js-active');
+             /* select.classList.toggle('js-active'); */
             })
          })
     
