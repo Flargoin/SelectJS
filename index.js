@@ -1,56 +1,52 @@
 window.addEventListener('DOMContentLoaded', (e) => {
-    const selects = document.querySelectorAll(".custom-select");
-    const form = document.querySelector('.form');
-
-
-    selects.forEach(select => {
-        select.classList.remove('js-active');
-        let menu = select.querySelector('.custom-select__menu');
-        let currValue = select.querySelector('.custom-select__trigger-value');
-        let options = select.querySelectorAll('.custom-select__item-name');
-
-        select.addEventListener('click', (e) => {
-            
-            let currTarget = e.currentTarget;
+    const select = (selectSelector, menu, current, option, activeClass) => {
+        const selects = document.querySelectorAll(selectSelector);
     
-            if(currTarget.closest('.custom-select')) {
-                currTarget.classList.toggle('js-active');
+        selects.forEach(trigger => {
+            trigger.classList.remove(activeClass);
+            let selectMenu = trigger.querySelector(menu);
+            let selectValue = trigger.querySelector(current);
+            let selectOptions = trigger.querySelectorAll(option);
     
-                if(currTarget.classList.contains('js-active')) {
-                    menu.style.maxHeight = menu.scrollHeight + 'px';
-                } else {
-                    menu.style.maxHeight = null;
+            trigger.addEventListener('click', (event) => {
+                let currTarget = event.currentTarget;
+                console.log(selectSelector.slice(1))
+                console.log(currTarget);
+                if(currTarget.closest(selectSelector)) {
+                    currTarget.classList.toggle(activeClass);
+        
+                    if(currTarget.classList.contains(activeClass)) {
+                        selectMenu.style.maxHeight = selectMenu.scrollHeight + 'px';
+                    } else {
+                        selectMenu.style.maxHeight = null;
+                    }
                 }
-            }
-
-/*             options.forEach(option => {
-                if(currValue.textContent == option.textContent) {
-                    option.style.display = 'none';
-                } else {
-                    option.style.display = '';
+            })
+    
+            selectMenu.addEventListener('click', (event) => {
+                const target = event.target;
+    
+                if(target.classList.contains(option.slice(1))) {
+                    selectValue.textContent = target.textContent;
+                    trigger.classList.remove(activeClass);
                 }
-            }) */
+            })
         })
+    }
 
-        menu.addEventListener('click', (event) => {
-            const target = event.target;
+    const bindData = (formSelector) => {
+        const form = document.querySelector(formSelector);
 
-            if(target.classList.contains('custom-select__item-name')) {
-                console.log(target);
-                currValue.textContent = target.textContent;
-                select.classList.remove('js-active');
-            }
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+    
+            const json = JSON.stringify(Object.fromEntries(formData.entries()));
+    
+            console.log(json);
         })
-    })
+    }
 
-
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        let formData = new FormData(form);
-
-        const json = JSON.stringify(Object.fromEntries(formData.entries()));
-
-        console.log(json);
-    })
+    select(".custom-select", ".custom-select__menu", ".custom-select__trigger-value", ".custom-select__item-name", "js-active");
+    bindData(".form");
 })
