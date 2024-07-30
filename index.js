@@ -22,31 +22,25 @@ window.addEventListener('DOMContentLoaded', (e) => {
                     menu.style.maxHeight = null;
                 }
             }
+
+/*             options.forEach(option => {
+                if(currValue.textContent == option.textContent) {
+                    option.style.display = 'none';
+                } else {
+                    option.style.display = '';
+                }
+            }) */
         })
 
-        options.forEach(option => {
-            option.addEventListener('click', (e) => {
-             /* e.stopPropagation(); */
-             console.log(e.target);
+        menu.addEventListener('click', (event) => {
+            const target = event.target;
 
-             if(e.target.classList.contains('custom-select__item-name')) {
-                currValue.textContent = e.target.textContent;
+            if(target.classList.contains('custom-select__item-name')) {
+                console.log(target);
+                currValue.textContent = target.textContent;
                 select.classList.remove('js-active');
-             }
-             
-    
-             /* select.classList.toggle('js-active'); */
-            })
-         })
-    
-         window.addEventListener('click', (e) => {
-            let target = e.target;
-    
-            if(!target.closest('.custom-select')) {
-                select.classList.remove('js-active');
-                menu.style.maxHeight = null;
             }
-         })
+        })
     })
 
 
