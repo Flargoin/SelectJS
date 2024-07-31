@@ -10,8 +10,6 @@ window.addEventListener('DOMContentLoaded', (e) => {
     
             trigger.addEventListener('click', (event) => {
                 let currTarget = event.currentTarget;
-                console.log(selectSelector.slice(1))
-                console.log(currTarget);
                 if(currTarget.closest(selectSelector)) {
                     currTarget.classList.toggle(activeClass);
         
@@ -20,6 +18,16 @@ window.addEventListener('DOMContentLoaded', (e) => {
                     } else {
                         selectMenu.style.maxHeight = null;
                     }
+
+                    selectOptions.forEach(item => {
+                        if(item.textContent == selectValue.textContent || item.textContent.trim() == 'Не выбрано') {
+                            item.style.display = 'none';
+                        } else {
+                            item.style.display = '';
+                        }
+                    })
+                } else {
+                    currTarget.classList.remove(activeClass);
                 }
             })
     
@@ -30,7 +38,10 @@ window.addEventListener('DOMContentLoaded', (e) => {
                     selectValue.textContent = target.textContent;
                     trigger.classList.remove(activeClass);
                 }
+
             })
+
+
         })
     }
 
